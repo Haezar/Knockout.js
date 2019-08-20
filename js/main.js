@@ -11,9 +11,7 @@ function ContributorsViewModel() {
   self.chosenSorting = ko.observable();
   getContributors().then(function(response) {
     response.forEach(element => {
-      let contributor = element;
-      contributor.group = element.contributions < 10 ? "bronze": element.contributions < 25 ? "silver": "gold";
-      self.contributors.push(contributor);
+      getContributionInfo(element, self)
     });
   })
   self.setFilter = function(filter) {
@@ -28,14 +26,25 @@ function ContributorsViewModel() {
       self.contributors(self.contributors().sort(contributorsSortingDESC))
     }
   }
-
 }
+
 async function getContributors(){
   let contributors = await fetch('https://api.github.com/repos/thomasdavis/backbonetutorials/contributors')
   .then(function(response) {
     return response.json();
   });
   return contributors;
+}
+
+async function getContributionInfo(element, ViewModel){
+  let contributor = element;
+  contributor.group = element.contributions < 10 ? "bronze": element.contributions < 25 ? "silver": "gold";
+  await $.get('https://api.github.com/users/'+element.login, function(data){
+    contributor.email = data.email;
+    contributor.location = data.location;
+    contributor.company = data.company;
+  })
+  ViewModel.contributors.push(contributor);
 }
 
 function contributorsSortingDESC(firstContributor, secondContributor){
@@ -47,6 +56,7 @@ function contributorsSortingDESC(firstContributor, secondContributor){
   }
   return 0
 }
+
 function contributorsSortingASC(firstContributor, secondContributor){
   if (firstContributor.login.toLowerCase() < secondContributor.login.toLowerCase()) {
     return -1

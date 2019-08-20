@@ -37,13 +37,16 @@ body {
   margin-bottom: 5px;
   padding: 20px 15px;
   text-transform: capitalize;
-  justify-content: space-between;
   background: rgba(255,255,255, 0.5);
   border-radius: 10px;
+  flex-wrap: wrap;
 }
 .contributors-list__item:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   margin: 10px -10px;
+}
+.contributors-list__item-login {
+  font-weight: bold;
 }
 .contributors-list__item-contributors {
   color: red;
@@ -51,12 +54,20 @@ body {
 }
 .contributors-list__item-group {
   color: blue;
-  text-align: center;
 }
 .contributors-list__item.displayed{
   display: flex;
 }
-
+.contributors-list__item-location, 
+.contributors-list__item-company, 
+.contributors-list__item-email {
+  display: none;
+}
+.contributors-list__item-location.displayed, 
+.contributors-list__item-company.displayed, 
+.contributors-list__item-email.displayed {
+  display: block;
+}
 .selectors-list{
   display: block;
   text-decoration: none;

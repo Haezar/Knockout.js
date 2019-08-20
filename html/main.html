@@ -37,6 +37,12 @@
       <span class="contributors-list__item-login col-md-4" data-bind="text: login"></span>
       <span class="contributors-list__item-group col-md-4" data-bind="text: group"></span>
       <span class="contributors-list__item-contributors col-md-4" data-bind="text: contributions"></span>
+      <span class="contributors-list__item-company col-md-4" data-bind="text: company,
+                                                                        css: { displayed: company}"></span>
+      <span class="contributors-list__item-location col-md-4" data-bind="text: location,
+                                                                         css: { displayed: location != null}"></span>
+      <span class="contributors-list__item-email col-md-4" data-bind="text: email,
+                                                                      css: { displayed: email}"></span>
     </div>
 </div>
 </body>
