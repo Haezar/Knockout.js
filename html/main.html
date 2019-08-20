@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/knockout/dist/knockout.js"></script>
+  <script src="../js/main.js"></script>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>First task</title>
+</head>
+<body>
+  <div class="selectors">
+    <u class="selectors-list" data-bind="foreach: filters">
+      <li class="selectors-list__item" data-bind="text: $data,
+                                                  css: { selected: $data == $root.chosenFilter() },
+                                                  click: $root.setFilter">
+      </li>
+    </u>
+  </div> 
+  <div class="contributors-list" data-bind="foreach: contributors">
+    <div class="contributors-list__item" data-bind="css: {displayed: group == $root.chosenFilter() || $root.chosenFilter() == 'all' }">
+      <span class="contributors-list__item-login" data-bind="text: login"></span>
+      <span class="contributors-list__item-contributors" data-bind="text: contributions"></span>
+      <span class="contributors-list__item-group" data-bind="text: group"></span>
+    </div>
+</div>
+</body>
+</html>
