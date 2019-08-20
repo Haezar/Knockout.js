@@ -6,23 +6,37 @@
   <script src="../js/main.js"></script>
   <link rel="stylesheet" href="../styles/style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <meta charset="UTF-8">
   <title>First task</title>
 </head>
 <body>
-  <div class="selectors">
-    <u class="selectors-list" data-bind="foreach: filters">
-      <li class="selectors-list__item" data-bind="text: $data,
-                                                  css: { selected: $data == $root.chosenFilter() },
-                                                  click: $root.setFilter">
-      </li>
-    </u>
-  </div> 
+  <div class="header">
+    <div class="selectors">
+      <u class="selectors-list" data-bind="foreach: filters">
+        <li class="selectors-list__item" data-bind="text: $data,
+                                                    css: { selected: $data == $root.chosenFilter() },
+                                                    click: $root.setFilter">
+        </li>
+      </u>
+    </div>
+    <div class="sorting-block">
+      <div class="sorting-block-label">
+        Sort:
+      </div>
+      <div class="sorting-block-items" data-bind="foreach: sorters">
+        <div class="sorting-block__item" data-bind="text: $data,
+                                                    css: { selected: $data == $root.chosenSorting() },
+                                                    click: $root.setSort">
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="contributors-list" data-bind="foreach: contributors">
     <div class="contributors-list__item" data-bind="css: {displayed: group == $root.chosenFilter() || $root.chosenFilter() == 'all' }">
-      <span class="contributors-list__item-login" data-bind="text: login"></span>
-      <span class="contributors-list__item-contributors" data-bind="text: contributions"></span>
-      <span class="contributors-list__item-group" data-bind="text: group"></span>
+      <span class="contributors-list__item-login col-md-4" data-bind="text: login"></span>
+      <span class="contributors-list__item-group col-md-4" data-bind="text: group"></span>
+      <span class="contributors-list__item-contributors col-md-4" data-bind="text: contributions"></span>
     </div>
 </div>
 </body>
